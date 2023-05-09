@@ -14,9 +14,9 @@ window.addEventListener('load', function() {
             this.player = new Player(this); //this refers to the game
             this.input = new InputHandler();
         }
-        update(){
+        update(deltaTime){
             //updates animation frames, triggers calculations, etc.
-            this.player.update(this.input.keys); //pass input.keys to player update method
+            this.player.update(this.input.keys, deltaTime); //pass input.keys to player update method
         }
         draw(context){
             //draw images, score, etc.
@@ -27,12 +27,16 @@ window.addEventListener('load', function() {
 
     const game = new Game(canvas.width, canvas.height);
     console.log(game);
+    let lastTime = 0;
 
-    function animate () {
+    function animate (timeStamp) {
+        const deltaTime = timeStamp - lastTime;
+        console.log(deltaTime);
+        lastTime = timeStamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        game.update();
+        game.update(deltaTime);
         game.draw(ctx);
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(0);
 });

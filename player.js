@@ -1,5 +1,4 @@
-import { Sitting } from "./playerStates.js";
-import { Running } from "./playerStates.js";
+import { Sitting, Running, Jumping, Falling } from "./playerStates.js";
 
 export class Player {
 
@@ -14,14 +13,17 @@ export class Player {
         this.image = document.getElementById('player');
         this.frameX = 0; //standing from SpriteSheet
         this.frameY = 0; //jumping from SpriteSheet
+        this.fps = 20;
+        this.frameInterval = 1000/this.fps;
+        this.frameTimer = 0;
         this.speed = 0;
         this.maxSpeed = 10;
-        this.states = [new Sitting(this), new Running(this)];
+        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this)];
         this.currentState = this.states[0];
         this.currentState.enter();
     }
 
-    update(input){
+    update(input, deltaTime){
         this.currentState.handleInput(input);
         //horizontal movement
         this.x += this.speed;
@@ -32,10 +34,20 @@ export class Player {
         if (this.x > this.game.width - this.width){this.x = this.game.width - this.width};
 
         //vertical movement
-        if(input.includes("ArrowUp") && this.onGround()) this.vy -=30;
         this.y += this.vy;
         if(!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
+
+        //sprite animation
+        if(this.frameTimer > this.frameInterval){
+            this.frameTimer = 0;
+            if(this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
+
+
     }
 
     draw(context){
