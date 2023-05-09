@@ -17,12 +17,11 @@ export class Sitting extends State {
         this.player = player;
     }
     enter(){
-        this.player.maxFrame = 4;
         this.player.frameY = 5;
     }
     handleInput(input){
         if(input.includes("ArrowLeft") || input.includes("ArrowRight")){
-            this.player.setState(states.SITTING);
+            this.player.setState(states.RUNNING);
         }
     }
 }
