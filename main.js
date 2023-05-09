@@ -11,19 +11,19 @@ window.addEventListener('load', function() {
         constructor(width, height){
             this.width = width;
             this.height = height;
-            this.player = new Player (this); //this refers to the game
+            this.player = new Player(this); //this refers to the game
             this.input = new InputHandler();
         }
         update(){
             //updates animation frames, triggers calculations, etc.
-            this.player.update();
+            this.player.update(this.input.keys); //pass input.keys to player update method
         }
         draw(context){
             //draw images, score, etc.
             this.player.draw(context);
         }
-
     }
+    
 
     const game = new Game(canvas.width, canvas.height);
     console.log(game);
