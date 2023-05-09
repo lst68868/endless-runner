@@ -40,3 +40,5 @@ window.addEventListener('load', function() {
     }
     animate(0);
 });
+
+//time stamp 7:38:53

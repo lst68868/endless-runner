@@ -22,6 +22,8 @@ export class Sitting extends State {
     handleInput(input){
         if(input.includes("ArrowLeft") || input.includes("ArrowRight")){
             this.player.setState(states.RUNNING);
+        } else {
+            this.player.setState(states.SITTING);
         }
     }
 }
