@@ -11,6 +11,8 @@ window.addEventListener('load', function() {
         constructor(width, height){
             this.width = width;
             this.height = height;
+            this.groundMargin = 50;
+            this.speed = 3;
             this.player = new Player(this); //this refers to the game
             this.input = new InputHandler();
         }
@@ -31,7 +33,6 @@ window.addEventListener('load', function() {
 
     function animate (timeStamp) {
         const deltaTime = timeStamp - lastTime;
-        // console.log(deltaTime);
         lastTime = timeStamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.update(deltaTime);
