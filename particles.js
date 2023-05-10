@@ -49,7 +49,8 @@ export class Fire extends Particle {
     }
     update(){
         super.update();
-        this.angle += this.va;  
+        this.angle += this.va;
+        this.x += Math.sin(this.angle * 10); //more sin fun  
     }
     draw(context){
         context.save(); //all canvas settings will only affect this particle. Useful trick.
