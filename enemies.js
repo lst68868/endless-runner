@@ -75,6 +75,18 @@ export class ClimbingEnemy extends Enemy {
         this.image = document.getElementById('enemy_spider_big');
         this.speedX = 0;
         this.speedY = Math.random() > 0.5 ? 1 : -1; //randomize enemy speed
-
+        this.maxFrame = 5;
+    }
+    update(deltaTime){
+        super.update(deltaTime);
+        if(this.y > this.game.height - this.height - this.game.groundMargin) this.speed*=-1; //spiders move up and down the screen
+        if(this.y < -this.height) this.markedForDeletion = true; //spider deleted if it goes offscreen
+    }
+    draw(context){
+        super.draw(context);
+        context.beginPath();
+        context.moveTo(this.x + this.width/2, 0);
+        context.lineTo(this.x + this.width/2, this.y + 50); //adding spider webs, centering them on the spider
+        context.stroke();
     }
 }
