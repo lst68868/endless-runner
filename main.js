@@ -15,7 +15,7 @@ window.addEventListener('load', function() {
             this.height = height;
             this.groundMargin = 80;
             this.speed = 0;
-            this.maxSpeed = 4;
+            this.maxSpeed = 3;
             this.background = new Background(this);
             this.player = new Player(this); //this refers to the game
             this.input = new InputHandler();
