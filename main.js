@@ -16,7 +16,7 @@ window.addEventListener('load', function() {
             this.groundMargin = 80;
             this.speed = 0;
             this.maxSpeed = 4;
-            this.Background = new Background(this);
+            this.background = new Background(this);
             this.player = new Player(this); //this refers to the game
             this.input = new InputHandler();
             this.enemies = [];
@@ -25,7 +25,7 @@ window.addEventListener('load', function() {
         }
         update(deltaTime){
             //updates animation frames, triggers calculations, etc.
-            this.Background.update();
+            this.background.update();
             this.player.update(this.input.keys, deltaTime); //pass input.keys to player update method
             //handle enemies
             if(this.enemyTimer > this.enemyInterval){
@@ -35,13 +35,14 @@ window.addEventListener('load', function() {
                 this.enemyTimer += deltaTime;
             }
             this.enemies.forEach(enemy => {
-                enemy.update(deltaTime)
+                enemy.update(deltaTime);
+                if(enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
             });
 
         }
         draw(context){
             //draw images, score, etc.
-            this.Background.draw(context);
+            this.background.draw(context);
             this.player.draw(context);
             this.enemies.forEach(enemy => {
                 enemy.draw(context)
@@ -68,4 +69,4 @@ window.addEventListener('load', function() {
     animate(0);
 });
 
-//time stamp 7:38:53
+//time stamp 8:22:40
