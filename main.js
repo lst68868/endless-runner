@@ -49,7 +49,8 @@ window.addEventListener('load', function() {
             });
         }
         addEnemy(){
-            this.enemies.push(new FlyingEnemy(this))
+            if(this.speed > 0 && Math.random() < 0.5) this.enemies.push(new GroundEnemy(this));
+            this.enemies.push(new FlyingEnemy(this));
         }
     }
     

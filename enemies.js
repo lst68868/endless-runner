@@ -38,17 +38,43 @@ export class FlyingEnemy extends Enemy {
         this.speedY = 0;
         this.maxFrame = 5;
         this.image = document.getElementById('enemy_fly');
+        this.angle = 0;
+        this.va = Math.random() * 0.1 + 0.1;
     }
     update(deltaTime){
         super.update(deltaTime);
-        if(this.x < 0 || this.x > this.game.width - this.width) this.speedX *= -1;
+        // if(this.x < 0 || this.x > this.game.width - this.width) this.speedX *= -1;
+        this.angle += this.va;
+        this.y += Math.sin(this.angle); //maps enemies to a sin wave
     }
 }
 
 export class GroundEnemy extends Enemy {
-
+    constructor(game){
+        super();
+        this.game = game;
+        this.width = 60;
+        this.height = 87;
+        this.x = this.game.width;
+        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.image = document.getElementById('enemy_plant');
+        this.speedX = 0;
+        this.speedY = 0;
+        this.maxFrame = 1;
+    }
 }
 
 export class ClimbingEnemy extends Enemy {
+    constructor(game){
+        super();
+        this.game = game;
+        this.width = 120;
+        this.height = 144;
+        this.x = this.game.width;
+        this.y = Math.random() * this.game.height * 0.5; //randomize enemy start position
+        this.image = document.getElementById('enemy_spider_big');
+        this.speedX = 0;
+        this.speedY = Math.random() > 0.5 ? 1 : -1; //randomize enemy speed
 
+    }
 }
