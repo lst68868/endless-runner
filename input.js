@@ -1,5 +1,6 @@
 export class InputHandler {
-    constructor(){
+    constructor(game){
+        this.game = game;
         this.keys = [];
         window.addEventListener('keydown', e => {
             if((e.key === "ArrowDown" || 
@@ -9,8 +10,7 @@ export class InputHandler {
                 e.key === "Shift") 
                 && this.keys.indexOf(e.key) === -1){
                     this.keys.push(e.key);
-                }
-            console.log(e.key, this.keys);
+                } else if (e.key === "d") this.game.debug = !this.game.debug; //super useful technique to add a "debug mode"
         });
         
         window.addEventListener('keyup', e => {
