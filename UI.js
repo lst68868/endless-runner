@@ -2,7 +2,7 @@ export class UI {
     constructor(game){
         this.game = game;
         this.fontSize = 30;
-        this.fontFamily = 'Helvetica';
+        this.fontFamily = 'Chakra Petch';
     }
     draw(context){
         context.save();
@@ -21,14 +21,14 @@ export class UI {
         //game over msg
         if(this.game.gameOver){
             context.textAlign = "center";
-            context.font = this.fontSize * 2 + "px " + this.fontFamily;
+            context.font = this.fontSize * 1.5 + "px " + this.fontFamily;
             if(this.game.score > 15){
-                context.fillText("That was absolutely ludicrous, king!", this.game.width * 0.5, this.game.height * 0.5 - 20);
-                context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
+                context.fillText("Great job, king!", this.game.width * 0.5, this.game.height * 0.5 - 20);
+                context.font = this.fontSize * 1 + "px " + this.fontFamily;
                 context.fillText("You scored " + this.game.score + " points!", this.game.width * 0.5, this.game.height * 0.5 + 20);
             } else {
                 context.fillText("Skill issue :(", this.game.width * 0.5, this.game.height * 0.5 - 20);
-                context.font = this.fontSize * 0.7 + "px " + this.fontFamily;
+                context.font = this.fontSize * 0.65 + "px " + this.fontFamily;
                 context.fillText("You scored " + this.game.score + " points!", this.game.width * 0.5, this.game.height * 0.5 + 20);
             }
             
