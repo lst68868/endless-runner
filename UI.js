@@ -27,14 +27,14 @@ export class UI {
         if(this.game.gameOver){
             context.textAlign = "center";
             context.font = this.fontSize * 1.5 + "px " + this.fontFamily;
-            if(this.game.score > 15){
+            if(this.game.score >= this.game.winningScore){
                 context.fillText("Great job, king!", this.game.width * 0.5, this.game.height * 0.5 - 20);
                 context.font = this.fontSize * 1 + "px " + this.fontFamily;
                 context.fillText("You scored " + this.game.score + " points!", this.game.width * 0.5, this.game.height * 0.5 + 20);
             } else {
                 context.fillText("Skill issue :(", this.game.width * 0.5, this.game.height * 0.5 - 20);
                 context.font = this.fontSize * 0.65 + "px " + this.fontFamily;
-                context.fillText("You scored " + this.game.score + " points!", this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillText("You needed " + (this.game.winningScore - this.game.score) + " more points!", this.game.width * 0.5, this.game.height * 0.5 + 20);
             }
             
         }

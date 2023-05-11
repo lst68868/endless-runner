@@ -7,7 +7,7 @@ import { UI } from './UI.js';
 window.addEventListener('load', function() {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 500;
+    canvas.width = 900;
     canvas.height = 500;
 
     class Game {
@@ -30,7 +30,8 @@ window.addEventListener('load', function() {
             this.enemyInterval = 1000;
             this.debug = false; //don't want hitboxes on first load
             this.score = 0;
-            this.fontColor = "black";
+            this.winningScore = 30;
+            this.fontColor = "purple";
             this.time = 0;
             this.maxTime = 30000;
             this.gameOver = false;
