@@ -3,6 +3,7 @@ export class UI {
         this.game = game;
         this.fontSize = 30;
         this.fontFamily = 'Chakra Petch';
+        this.heartImage = document.getElementById("heart");
     }
     draw(context){
         context.save();
@@ -18,6 +19,10 @@ export class UI {
         //draw timer
         context.font = this.fontSize * 0.8 + "px " + this.fontFamily;
         context.fillText("Time: " + (this.game.time * 0.001).toFixed(1), 20, 80); //move decimal over to show seconds
+        //draw lives
+        for(let i = 0; i < this.game.lives; i++){
+            context.drawImage(this.heartImage, 25 * i + 20, 95, 25, 25);
+        }
         //game over msg
         if(this.game.gameOver){
             context.textAlign = "center";
