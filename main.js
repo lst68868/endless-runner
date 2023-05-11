@@ -117,5 +117,3 @@ window.addEventListener('load', function() {
     }
     animate(0);
 });
-
-//time stamp 8:22:40
